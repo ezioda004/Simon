@@ -1,6 +1,52 @@
 .main {
-    border: 2px black solid;
-    border-radius: 50%;
-    width: 500px;
-    height: 500px;
-}
+  border: 2px black solid;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: black; }
+  .main .row {
+    flex: 0 1 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 45%;
+    height: 45%;
+    justify-content: space-between;
+    align-self: flex-start; }
+    .main .row #red {
+      background: red;
+      flex: 0 1 45%;
+      border-top-right-radius: 100%;
+      width: 50%; }
+    .main .row #green {
+      background: green;
+      flex: 0 1 45%;
+      border-top-left-radius: 100%;
+      width: 50%; }
+    .main .row #yellow {
+      background: yellow;
+      flex: 0 1 45%;
+      border-bottom-left-radius: 100%;
+      width: 50%; }
+    .main .row #blue {
+      background: blue;
+      flex: 0 1 45%;
+      border-bottom-right-radius: 100%;
+      width: 50%; }
+  .main .row:nth-of-type(2) {
+    align-self: flex-end; }
+
+.center {
+  background: black;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  position: relative;
+  top: -350px;
+  left: 150px; }
+
+/*# sourceMappingURL=style.css.map */
