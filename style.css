@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  background: black; }
+
 .main {
   border: 2px black solid;
   width: 500px;
@@ -7,7 +11,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  background: black; }
+  background: black;
+  margin: 100px auto; }
   .main .row {
     flex: 0 1 100%;
     display: flex;
@@ -43,10 +48,23 @@
 .center {
   background: black;
   border-radius: 50%;
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   position: relative;
-  top: -350px;
-  left: 150px; }
+  top: -500px;
+  margin: 0 auto; }
+
+@media (max-width: 500px) {
+  .main {
+    margin: 100px auto;
+    width: 350px;
+    height: 350px; }
+
+  .center {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    top: -350px;
+    margin: 0 auto; } }
 
 /*# sourceMappingURL=style.css.map */
