@@ -23,24 +23,25 @@ body {
     width: 47%;
     height: 47%;
     justify-content: space-between;
-    align-self: flex-start; }
+    align-self: flex-start;
+    transition: all 0.5s; }
     .main .row #red {
-      background: red;
+      border: 2px solid red;
       flex: 0 1 47%;
       border-top-right-radius: 100%;
       width: 50%; }
     .main .row #green {
-      background: green;
+      border: 2px solid green;
       flex: 0 1 47%;
       border-top-left-radius: 100%;
       width: 50%; }
     .main .row #yellow {
-      background: yellow;
+      border: 2px solid yellow;
       flex: 0 1 47%;
       border-bottom-left-radius: 100%;
       width: 50%; }
     .main .row #blue {
-      background: blue;
+      border: 2px solid blue;
       flex: 0 1 47%;
       border-bottom-right-radius: 100%;
       width: 50%; }
@@ -71,6 +72,39 @@ a {
     position: relative;
     top: -280px;
     font-size: 50px; }
+
+.intro {
+  display: none;
+  position: relative;
+  top: -750px;
+  font-size: 30px;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px; }
+  .intro h1 {
+    text-align: center; }
+
+.mode {
+  display: none;
+  position: relative;
+  top: -750px;
+  left: 50px;
+  font-size: 25px;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px; }
+  .mode h2 {
+    cursor: pointer; }
+
+.counter {
+  position: relative;
+  top: -920px;
+  display: none;
+  text-align: center;
+  font-size: 60px;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px; }
 
 @media (max-width: 500px) {
   .main {
