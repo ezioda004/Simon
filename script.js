@@ -64,7 +64,7 @@ $("#easy").on("click", function(){
             easyMode();
             setTimeout(function(){
               gameCheck = true;
-            checker();
+              checker();
             }, 1000)
             
           }, 2000)
@@ -85,21 +85,56 @@ function easyMode(){
   score+=1;
   $(".counter span").html(score);
   sequence.push(Math.floor(Math.random()*4));
-  
-  sequence.forEach(function(val){
-    if (val === 0){
-      $("#greenS").get(0).play();
+  var j = 0;
+
+  sequence.forEach(function(val, i){
+    
+   setTimeout(function(){
+    $("#red, #green, #blue, #yellow").css({
+      "box-shadow": "0, 0, 0, 0",
+      "opacity": "0.7"
+    });
+    if (j == sequence.length){
+      setTimeout(() => {
+        checker();
+      }, 3000);
     }
-    else if (val === 1){
-      $("#redS").get(0).play();
-    }
-    else if (val === 2){
-      $("#yellowS").get(0).play();
-    }
-    else if (val === 3){
-      $("#blueS").get(0).play();
-    }
+     else if (val === 0){
+          $("#green").css({
+            "box-shadow": "0px 0px 20px 10px green",
+            "opacity": "1"
+          });
+          $("#greenS").get(0).play();
+        
+      }
+      else if (val === 1){
+          $("#red").css({
+            "box-shadow": "0px 0px 20px 10px red",
+            "opacity": "1"
+          });
+          $("#redS").get(0).play();
+      }
+      else if (val === 2){
+        $("#yellow").css({
+          "box-shadow": "0px 0px 20px 10px yellow",
+          "opacity": "1"
+        });
+        $("#yellowS").get(0).play();
+      }
+      else if (val === 3){
+        $("#blue").css({
+          "box-shadow": "0px 0px 20px 10px blue",
+          "opacity": "1"
+        });
+        $("#blueS").get(0).play();
+      }
+
+      j++;
+   }, i * 2000);
+    
+    
   });
+  
   
 }
 
@@ -107,19 +142,20 @@ function easyMode(){
 function checker(){
   console.log("working");
   if (gameCheck){
-    // for (let i = 0; i < sequence.length; i++){
-    //   if (sequence[i] === 0){
-
-    //   }
-    // }
+    
+    checkingIndex = 0;
     $("#green").on("click", function(e){
       e.preventDefault();
       $("#greenS").get(0).play();
       if (sequence[checkingIndex] === 0){
+        
+        if (checkingIndex === sequence.length-1){
+          setTimeout(() => {
+            easyMode();
+          }, 2000);
+        }
         checkingIndex+=1;
-        setTimeout(() => {
-          easyMode();
-        }, 2000);
+        
         
       }
       else {
@@ -130,10 +166,13 @@ function checker(){
       e.preventDefault();
         $("#redS").get(0).play();
         if (sequence[checkingIndex] === 1){
+          
+          if (checkingIndex === sequence.length-1){
+            setTimeout(() => {
+              easyMode();
+            }, 2000);
+          }
           checkingIndex+=1;
-          setTimeout(() => {
-            easyMode();
-          }, 2000);
         }
         else {
           alert("wrong!");
@@ -143,10 +182,13 @@ function checker(){
       e.preventDefault();
       $("#yellowS").get(0).play();
       if (sequence[checkingIndex] === 2){
-        checkingIndex+=1;
-        setTimeout(() => {
-          easyMode();
-        }, 2000);
+        
+        if (checkingIndex === sequence.length-1){
+          setTimeout(() => {
+            easyMode();
+          }, 2000);
+          checkingIndex+=1;
+        }
       }
       else {
         alert("wrong!");
@@ -156,10 +198,13 @@ function checker(){
       e.preventDefault();
       $("#blueS").get(0).play();
       if (sequence[checkingIndex] === 3){
+        
+        if (checkingIndex === sequence.length-1){
+          setTimeout(() => {
+            easyMode();
+          }, 2000);
+        }
         checkingIndex+=1;
-        setTimeout(() => {
-          easyMode();
-        }, 2000);
       }
       else {
         alert("wrong!");
@@ -170,4 +215,10 @@ function checker(){
 
 });
 
-
+// var array = [1, 2, 3, 4];
+// var interval = 1000;
+// array.forEach(function (val, i) {
+//   setTimeout(function () {
+//     console.log(val);
+//   }, i * interval);
+// });
