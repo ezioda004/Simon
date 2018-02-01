@@ -5,6 +5,7 @@ $(document).ready(function(){
   let score = 0;
   let gameCheck = false;
   let checkingIndex = 0;
+  var timeCheck = false;
 
 //SVG animation
 
@@ -32,10 +33,8 @@ $(document).ready(function(){
       return d;       
   }
   
-  window.onload = function() {
     // document.getElementById("arc1").setAttribute("d", describeArc(75, 75, 50, 0, 359));   // When width < 500px
-    document.getElementById("arc1").setAttribute("d", describeArc(150, 150, 130, 0, 359));
-  };
+    document.getElementById("arc1").setAttribute("d", describeArc(150, 150, 130, 0, 0));
  
 //Intro animation
 
@@ -63,7 +62,7 @@ $("#easy").on("click", function(){
           setTimeout(function(){
             easyMode();
             setTimeout(function(){
-              gameCheck = true;
+              // gameCheck = true;
               checker();
             }, 1000)
             
@@ -77,7 +76,26 @@ $("#easy").on("click", function(){
   });
 })
 
+function time(){
+  stopTime = setTimeout(function(){
+    var deg = 0;
+    if (timeCheck){
+      alert("timesUPP");
+      console.log("ok")
+      
+      runAgain();
+    }
+    console.log("okok")
+  }, 10000);
+} 
 
+function arcAnimate(){
+  var deg = 9;
+  animate = setInterval(function(){
+    document.getElementById("arc1").setAttribute("d", describeArc(150, 150, 130, 0, deg));
+    deg+=9;
+  }, 250);
+}
 //Easy mode
 
 
@@ -93,17 +111,13 @@ function easyMode(){
 
 function runAgain(){
   var j = 0;
-
+  document.getElementById("arc1").setAttribute("d", describeArc(150, 150, 130, 0, 0));
+gameCheck = false;
 sequence.forEach(function(val, i){
   
  setTimeout(function(){
-  if (j == sequence.length){
-    setTimeout(() => {
-      checker();
-    }, 3000);
-  }
-   else if (val === 0){
-        $("#green").addClass("shadowOnG").removeClass("opacity").delay(2000).queue(function(next){
+   if (val === 0){
+        $("#green").addClass("shadowOnG").removeClass("opacity").delay(1000).queue(function(next){
           $(this).removeClass("shadowOnG");
           $(this).addClass("opacity")
           next();
@@ -111,7 +125,7 @@ sequence.forEach(function(val, i){
         $("#greenS").get(0).play();
     }
     else if (val === 1){
-        $("#red").addClass("shadowOnR").removeClass("opacity").delay(2000).queue(function(next){
+        $("#red").addClass("shadowOnR").removeClass("opacity").delay(1000).queue(function(next){
           $(this).removeClass("shadowOnR");
           $(this).addClass("opacity");
           next();
@@ -119,7 +133,7 @@ sequence.forEach(function(val, i){
         $("#redS").get(0).play();
     }
     else if (val === 2){
-      $("#yellow").addClass("shadowOnY").removeClass("opacity").delay(2000).queue(function(next){
+      $("#yellow").addClass("shadowOnY").removeClass("opacity").delay(1000).queue(function(next){
         $(this).removeClass("shadowOnY");
         $(this).addClass("opacity");
         next();
@@ -127,13 +141,23 @@ sequence.forEach(function(val, i){
       $("#yellowS").get(0).play();
     }
     else if (val === 3){
-      $("#blue").addClass("shadowOnB").removeClass("opacity").delay(2000).queue(function(next){
+      $("#blue").addClass("shadowOnB").removeClass("opacity").delay(1000).queue(function(next){
         $(this).removeClass("shadowOnB");
         $(this).addClass("opacity");
         next();
       });
       $("#blueS").get(0).play();
     }
+    (function(){
+      if (i == sequence.length-1){
+        gameCheck = true;
+        // checker();
+        timeCheck = true;
+        arcAnimate();
+        time();
+        
+       }
+    }(i));
 
     j++;
  }, i * 2000);
@@ -147,36 +171,55 @@ checkingIndex = 0;
 
 function checker(){
   console.log("working");
-  if (gameCheck){
     
     checkingIndex = 0;
     $("#green").on("click", function(e){
       e.preventDefault();
-      $("#greenS").get(0).play();
-      console.log(checkingIndex);
-      if (sequence[checkingIndex] === 0){
-        
-        if (checkingIndex === sequence.length-1){
-          setTimeout(() => {
-            easyMode();
-          }, 2000);
+      if (gameCheck){
+        // var timeCheck = setTimeout(function(){
+        //   console.log("timed out");
+        //   runAgain();
+        // }, 5000);
+        $("#greenS").get(0).play();
+        console.log(checkingIndex);
+        if (sequence[checkingIndex] === 0){
+          
+          if (checkingIndex === sequence.length-1){
+            timeCheck = false;
+            clearInterval(animate);
+            clearTimeout(stopTime);
+            setTimeout(() => {
+              easyMode();
+            }, 2000);
+          }
+          checkingIndex+=1;
+          
+          
         }
-        checkingIndex+=1;
-        
-        
+        else {
+          alert("wrong!");
+          timeCheck = false;
+          clearInterval(animate);
+            clearTimeout(stopTime);
+          setTimeout(() => {
+            runAgain();
+          }, 1000);
+          
+        }
       }
-      else {
-        alert("wrong!");
-        runAgain();
-      }
+
     });
     $("#red").on("click", function(e){
       e.preventDefault();
-      console.log(checkingIndex);
+      if (gameCheck){
+        console.log(checkingIndex);
         $("#redS").get(0).play();
         if (sequence[checkingIndex] === 1){
           
           if (checkingIndex === sequence.length-1){
+            timeCheck = false;
+            clearInterval(animate);
+            clearTimeout(stopTime);
             setTimeout(() => {
               easyMode();
             }, 2000);
@@ -185,34 +228,57 @@ function checker(){
         }
         else {
           alert("wrong!");
-          runAgain();
+          timeCheck = false;
+          clearInterval(animate);
+            clearTimeout(stopTime);
+          setTimeout(() => {
+            runAgain();
+          }, 1000);
         }
+      }
+
       });
     $("#yellow").on("click", function(e){
       e.preventDefault();
-      console.log(checkingIndex);
+      if (gameCheck){
+        console.log(checkingIndex);
       $("#yellowS").get(0).play();
       if (sequence[checkingIndex] === 2){
         
         if (checkingIndex === sequence.length-1){
+          timeCheck = false;
+          clearInterval(animate);
+            clearTimeout(stopTime);
           setTimeout(() => {
             easyMode();
           }, 2000);
-          checkingIndex+=1;
+          
         }
+        checkingIndex+=1;
       }
       else {
         alert("wrong!");
-        runAgain();
+        timeCheck = false;
+          clearInterval(animate);
+            clearTimeout(stopTime);
+        setTimeout(() => {
+          runAgain();
+        }, 1000);
+        }
       }
+      
         });
     $("#blue").on("click", function(e){
       e.preventDefault();
-      console.log(checkingIndex);
+      if (gameCheck){
+        console.log(checkingIndex);
       $("#blueS").get(0).play();
       if (sequence[checkingIndex] === 3){
         
         if (checkingIndex === sequence.length-1){
+          timeCheck = false;
+          clearInterval(animate);
+            clearTimeout(stopTime);
           setTimeout(() => {
             easyMode();
           }, 2000);
@@ -221,18 +287,16 @@ function checker(){
       }
       else {
         alert("wrong!");
-        runAgain();
+        timeCheck = false;
+          clearInterval(animate);
+            clearTimeout(stopTime);
+        setTimeout(() => {
+          runAgain();
+        }, 1000);
       }
+      }
+      
       });
-  }
 }
 
 });
-
-// var array = [1, 2, 3, 4];
-// var interval = 1000;
-// array.forEach(function (val, i) {
-//   setTimeout(function () {
-//     console.log(val);
-//   }, i * interval);
-// });
