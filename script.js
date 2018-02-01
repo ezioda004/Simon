@@ -85,57 +85,63 @@ function easyMode(){
   score+=1;
   $(".counter span").html(score);
   sequence.push(Math.floor(Math.random()*4));
+
+
+  runAgain();
+  
+}
+
+function runAgain(){
   var j = 0;
 
-  sequence.forEach(function(val, i){
-    
-   setTimeout(function(){
-    $("#red, #green, #blue, #yellow").css({
-      "box-shadow": "0, 0, 0, 0",
-      "opacity": "0.7"
-    });
-    if (j == sequence.length){
-      setTimeout(() => {
-        checker();
-      }, 3000);
+sequence.forEach(function(val, i){
+  
+ setTimeout(function(){
+  if (j == sequence.length){
+    setTimeout(() => {
+      checker();
+    }, 3000);
+  }
+   else if (val === 0){
+        $("#green").addClass("shadowOnG").removeClass("opacity").delay(2000).queue(function(next){
+          $(this).removeClass("shadowOnG");
+          $(this).addClass("opacity")
+          next();
+        });
+        $("#greenS").get(0).play();
     }
-     else if (val === 0){
-          $("#green").css({
-            "box-shadow": "0px 0px 20px 10px green",
-            "opacity": "1"
-          });
-          $("#greenS").get(0).play();
-        
-      }
-      else if (val === 1){
-          $("#red").css({
-            "box-shadow": "0px 0px 20px 10px red",
-            "opacity": "1"
-          });
-          $("#redS").get(0).play();
-      }
-      else if (val === 2){
-        $("#yellow").css({
-          "box-shadow": "0px 0px 20px 10px yellow",
-          "opacity": "1"
+    else if (val === 1){
+        $("#red").addClass("shadowOnR").removeClass("opacity").delay(2000).queue(function(next){
+          $(this).removeClass("shadowOnR");
+          $(this).addClass("opacity");
+          next();
         });
-        $("#yellowS").get(0).play();
-      }
-      else if (val === 3){
-        $("#blue").css({
-          "box-shadow": "0px 0px 20px 10px blue",
-          "opacity": "1"
-        });
-        $("#blueS").get(0).play();
-      }
+        $("#redS").get(0).play();
+    }
+    else if (val === 2){
+      $("#yellow").addClass("shadowOnY").removeClass("opacity").delay(2000).queue(function(next){
+        $(this).removeClass("shadowOnY");
+        $(this).addClass("opacity");
+        next();
+      });
+      $("#yellowS").get(0).play();
+    }
+    else if (val === 3){
+      $("#blue").addClass("shadowOnB").removeClass("opacity").delay(2000).queue(function(next){
+        $(this).removeClass("shadowOnB");
+        $(this).addClass("opacity");
+        next();
+      });
+      $("#blueS").get(0).play();
+    }
 
-      j++;
-   }, i * 2000);
-    
-    
-  });
+    j++;
+ }, i * 2000);
   
   
+});
+
+checkingIndex = 0;
 }
 
 
@@ -147,6 +153,7 @@ function checker(){
     $("#green").on("click", function(e){
       e.preventDefault();
       $("#greenS").get(0).play();
+      console.log(checkingIndex);
       if (sequence[checkingIndex] === 0){
         
         if (checkingIndex === sequence.length-1){
@@ -160,10 +167,12 @@ function checker(){
       }
       else {
         alert("wrong!");
+        runAgain();
       }
     });
     $("#red").on("click", function(e){
       e.preventDefault();
+      console.log(checkingIndex);
         $("#redS").get(0).play();
         if (sequence[checkingIndex] === 1){
           
@@ -176,10 +185,12 @@ function checker(){
         }
         else {
           alert("wrong!");
+          runAgain();
         }
       });
     $("#yellow").on("click", function(e){
       e.preventDefault();
+      console.log(checkingIndex);
       $("#yellowS").get(0).play();
       if (sequence[checkingIndex] === 2){
         
@@ -192,10 +203,12 @@ function checker(){
       }
       else {
         alert("wrong!");
+        runAgain();
       }
         });
     $("#blue").on("click", function(e){
       e.preventDefault();
+      console.log(checkingIndex);
       $("#blueS").get(0).play();
       if (sequence[checkingIndex] === 3){
         
@@ -208,6 +221,7 @@ function checker(){
       }
       else {
         alert("wrong!");
+        runAgain();
       }
       });
   }
