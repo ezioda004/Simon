@@ -156,7 +156,7 @@ function time(){
 
 
 function arcAnimate(){
-  var deg = 4.5/2;
+  var deg = 0;
   animate = setInterval(function(){
  
       if ($(window).width() < 500) {

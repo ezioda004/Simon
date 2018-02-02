@@ -205,8 +205,11 @@ audio {
   .counter {
     font-size: 2em;
     position: relative;
-    top: -610px;
-    width: 100px;
-    height: 100px; } }
+    top: -510px;
+    width: 150px;
+    height: 150px; }
+    .counter span {
+      position: relative;
+      top: 0; } }
 
 /*# sourceMappingURL=style.css.map */
