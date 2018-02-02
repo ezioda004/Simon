@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="script.js"></script>
-    <title>Simon</title>
+    <title>Simon®</title>
 </head>
 <body>
+        
     <div class = "main">
         <div class = "row">
             <a id = "green" class = "opacity" href="#"></a>   
@@ -24,21 +25,26 @@
             <a id = "yellow" class = "opacity" href="#"></a>
             <a id = "blue" class = "opacity" href="#"></a>
         </div>
+        
     </div>
+    <div id ="reset">
+            <a href="#"><i id ="icon" class="fas fa-undo-alt"></i></a>
+      </div>
     <div class = "center">
         <svg>
-            <path id="arc1" fill="none" stroke="green" stroke-width="20" />
+            <path id="arc1" fill="none" stroke="orange" stroke-width="20" />
         </svg>
     </div>
-      <div class = "intro"><h1>Simon</h1></div>
+      <div class = "intro"><h1>Simon<sup><span id = "reg">&reg;</span></sup></h1></div>
       <div class = "mode">
           <h2 id = "easy">Easy</h2>
           <h2 id = "hard">Hard</h2>
       </div>
       <div class = "counter">
           <span>0</span>
+          
       </div>
-
+      
       <audio id  = "greenS" src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"></audio>
       <audio id = "redS" src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"></audio>
       <audio id = "yellowS" src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"></audio>

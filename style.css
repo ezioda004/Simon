@@ -1,8 +1,10 @@
 body {
   margin: 0;
-  background: black;
+  background: #131313;
   color: whitesmoke;
-  font-family: 'Abril Fatface', cursive; }
+  font-family: 'Abril Fatface', cursive;
+  height: 700px;
+  text-shadow: 1px, 1px, 1px, 1px, white; }
 
 .main {
   border: 2px black solid;
@@ -13,8 +15,8 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  background: black;
-  margin: 100px auto; }
+  background: #131313;
+  margin: 80px auto; }
   .main .row {
     flex: 0 1 100%;
     display: flex;
@@ -64,12 +66,12 @@ a {
   display: inline-block; }
 
 .center {
-  background: black;
+  background: #131313;
   border-radius: 50%;
   height: 300px;
   width: 300px;
   position: relative;
-  top: -500px;
+  top: -520px;
   margin: 0 auto; }
   .center svg {
     height: 100%;
@@ -97,12 +99,15 @@ a {
   height: 200px;
   width: 200px; }
   .intro h1 {
+    cursor: pointer;
     text-align: center; }
+    .intro h1 #reg {
+      font-family: Courier New, Courier, monospace; }
 
 .mode {
   display: none;
   position: relative;
-  top: -750px;
+  top: -775px;
   left: 50px;
   font-size: 25px;
   margin: 0 auto;
@@ -113,13 +118,18 @@ a {
 
 .counter {
   position: relative;
-  top: -920px;
+  top: -810px;
   display: none;
   text-align: center;
   font-size: 60px;
   margin: 0 auto;
-  height: 200px;
-  width: 200px; }
+  height: 300px;
+  width: 300px; }
+  .counter span {
+    text-align: center;
+    position: relative;
+    top: 100px;
+    display: none; }
 
 .opacity {
   opacity: 0.7; }
@@ -140,9 +150,23 @@ a {
   box-shadow: 0px 0px 20px 10px blue;
   opacity: 1; }
 
-.shadowOff {
-  box-shadow: none;
-  opacity: 0.7; }
+#reset {
+  margin: 0 auto;
+  font-size: 30px;
+  color: whitesmoke;
+  display: flex;
+  justify-content: center; }
+  #reset a {
+    display: inline-block;
+    text-align: center;
+    color: orange; }
+  #reset a:link {
+    text-decoration: none; }
+  #reset a:hover {
+    text-shadow: 0px 0px 20px 10px orange; }
+
+audio {
+  display: none; }
 
 @media (max-width: 500px) {
   .main {
@@ -150,11 +174,39 @@ a {
     width: 350px;
     height: 350px; }
 
-  .center {
-    height: 150px;
-    width: 150px;
+  #reset {
     position: relative;
-    top: -350px;
-    margin: 0 auto; } }
+    top: -70px; }
+
+  .center {
+    height: 175px;
+    width: 175px;
+    position: relative;
+    top: -400px;
+    margin: 0 auto; }
+    .center svg #arc1 {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      top: 200px; }
+
+  .intro {
+    position: relative;
+    top: -550px;
+    font-size: 1.1em; }
+
+  .mode {
+    position: relative;
+    top: -550px;
+    font-size: 1.1em;
+    margin: 0 auto;
+    left: 70px; }
+
+  .counter {
+    font-size: 2em;
+    position: relative;
+    top: -610px;
+    width: 100px;
+    height: 100px; } }
 
 /*# sourceMappingURL=style.css.map */
