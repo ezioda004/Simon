@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
   let sequence = [];
@@ -138,16 +137,13 @@ function time(){
     if (timeCheck){
       clearInterval(animate);
       document.getElementById("arc1").setAttribute("d", describeArc(150, 150, 130, 0, 0));
-      
       setTimeout(() => {
         runAgain();  
       }, 1500);
       $("span").fadeOut(function() {
         $(this).text("TimeOut").fadeIn();
-      });
-      
+      }); 
     }
-    console.log("okok")
   }, 10000);
 } 
 
@@ -180,10 +176,7 @@ function easyMode(){
     $(this).html(score);
   });
   sequence.push(Math.floor(Math.random()*4));
-
-  
   runAgain();
-  
 }
 
 
