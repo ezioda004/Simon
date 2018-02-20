@@ -173,9 +173,9 @@ function arcAnimate(){
 function hoverEffect(){
   for (let i = 0; i < color.length; i++){
     $(color[i]).hover(function(){
-          $(color[i]).addClass(shadowColor[i])
+          $(color[i]).addClass(shadowColor[i]);
       },function(){
-        $(color[i]).removeClass(shadowColor[i])
+        $(color[i]).removeClass(shadowColor[i]);
       });
   }
 }
@@ -204,6 +204,7 @@ function runAgain(){
 
   for (let i = 0; i < color.length; i++){
     $(color[i]).off("mouseenter mouseleave");
+    $(color[i]).removeClass(shadowColor[i]);
   }
   
 
