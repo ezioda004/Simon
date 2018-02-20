@@ -32,33 +32,21 @@ body {
       flex: 0 1 47%;
       border-top-right-radius: 100%;
       width: 50%; }
-    .main .row #red:hover {
-      box-shadow: 0px 0px 20px 10px red;
-      opacity: 1; }
     .main .row #green {
       border: 2px solid green;
       flex: 0 1 47%;
       border-top-left-radius: 100%;
       width: 50%; }
-    .main .row #green:hover {
-      box-shadow: 0px 0px 20px 10px green;
-      opacity: 1; }
     .main .row #yellow {
       border: 2px solid yellow;
       flex: 0 1 47%;
       border-bottom-left-radius: 100%;
       width: 50%; }
-    .main .row #yellow:hover {
-      box-shadow: 0px 0px 20px 10px yellow;
-      opacity: 1; }
     .main .row #blue {
       border: 2px solid blue;
       flex: 0 1 47%;
       border-bottom-right-radius: 100%;
       width: 50%; }
-    .main .row #blue:hover {
-      box-shadow: 0px 0px 20px 10px blue;
-      opacity: 1; }
   .main .row:nth-of-type(2) {
     align-self: flex-end; }
 

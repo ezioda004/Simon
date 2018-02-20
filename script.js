@@ -6,6 +6,8 @@ $(document).ready(function(){
   let checkingIndex = 0;
   var timeCheck = false;
   let hardMode = false;
+  let color = ["#red", "#green", "#yellow", "#blue"];
+  let shadowColor = ["shadowOnR", "shadowOnG", "shadowOnY", "shadowOnB"];
 
 //SVG animation
 
@@ -166,6 +168,19 @@ function arcAnimate(){
   }, 125/2);
 }
 
+//Hover effect 
+
+function hoverEffect(){
+  for (let i = 0; i < color.length; i++){
+    $(color[i]).hover(function(){
+          $(color[i]).addClass(shadowColor[i])
+      },function(){
+        $(color[i]).removeClass(shadowColor[i])
+      });
+  }
+}
+hoverEffect(); //Initially running hover function.
+
 
 //Start easymode
 
@@ -184,6 +199,15 @@ function easyMode(){
 
 
 function runAgain(){
+
+  //Hover effect unbind:
+
+  for (let i = 0; i < color.length; i++){
+    $(color[i]).off("mouseenter mouseleave");
+  }
+  
+
+//Hover effect over
   var j = 0;
   $("span").fadeOut(function(){
     $(this).text(score).fadeIn().removeClass("flash");
@@ -233,6 +257,7 @@ function runAgain(){
         timeCheck = true;
         arcAnimate();
         time();
+        hoverEffect(); //ACTIVATES HOVER EFFECT WOHOOO!
         
        }
     }(i));
@@ -249,7 +274,7 @@ checkingIndex = 0;
 
 //Checker to check if the player clicked correctly or otehrwise
 
-function checker(){         
+function checker(){  
     checkingIndex = 0;
 
     //Green button
@@ -258,7 +283,7 @@ function checker(){
       e.preventDefault();
       if (gameCheck){                                   //Checks if the click is enabled
         $("#greenS").get(0).play();
-        console.log(checkingIndex);
+        // console.log(checkingIndex);
         if (sequence[checkingIndex] === 0){           //Check if clicked the correct sequence
           if (checkingIndex === sequence.length-1){  // To check if the last clicked is the last in sequence : run the next sequence
             timeCheck = false;
